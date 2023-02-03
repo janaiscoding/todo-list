@@ -21,7 +21,7 @@ export default function makeHeader(){
     contactMe.innerText = "Contact me";
     contactMe.classList.add("contact-button");
     
-    nav.append(logoTitle, createProject, createToDoElement, contactMe);
-    takeHeader.append(nav);
+    nav.append(createProject, createToDoElement, contactMe);
+    takeHeader.append(logoTitle,nav);
     }
     
