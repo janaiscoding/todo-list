@@ -1,8 +1,19 @@
-let toDoArray = [];
+class ToDo { 
+    constructor(
+        title = 'Unknown',
+        description = 'Unknown',
+        dueDate = 'Unknown',
+        priority = 'Unknown'
+    ){
+        this.title = title
+        this.description = description
+        this.dueDate = dueDate
+        this.priority = priority
+    }
+}
 
-export function createToDo(title, description, dueDate, priority, checkList){
-    toDoArray.push({title, description, dueDate, priority, checkList});
-    console.log(toDoArray);
-    console.log({title, description, dueDate, priority, checkList});
-    return {title, description, dueDate, priority, checkList};
+class Project {
+    constructor (){
+        this.projects = []
+    }
 }
