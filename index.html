@@ -7,32 +7,126 @@
     <title>To do List</title>
 </head>
 <body>
-     <!-- header  -->
-    <header class="header-wrapper">
-        <div class="logo">Todo List</div>
-        <nav class="nav-bar">
-            <button class="to-do-btn">New To Do</button>
-            <button class="project-btn">New Project</button>
-            <button class="contact">Contact</button>
-        </nav>
-    </header>
-    <!-- main content wrapper -->
-    <main class="main-content-wrapper">
-        <!-- sidebar  -->
-    <div class="sidebar-wrapper">
-        <ul class="sidebar-list">
-            <li class="today-tab">Today</li>
-            <li class="week-tab">Week</li>
-            <li class="month-tab">Month</li>
-            <li class="projects-tab">Project</li>
-        </ul>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="assets/coding.png" alt="coding logo" width="40px" class="sidebar-logo icon">
+                <div class="sidebar-title">Dashboard</div>
+                    </div>
+        <div class="home">
+            <img src="assets/home.png" alt="homepage icon" width="30px" class="home-icon icon">
+                <p class="title">Home</p>
+                    </div>
+        <div class="profile">
+            <img src="assets/user.png" alt="user profile icon" width="30px" class="profile-icon icon">
+                <p class="title">Profile</p>
+                    </div>
+        <div class="messages">
+            <img src="assets/message.png" alt="message box icon" width="30px" class="messages-icon icon">
+                <p class="title">Messages</p>
+                    </div>
+        <div class="history">
+            <img src="assets/history.png" alt="history box icon" width="30px" class="history-icon icon">
+                <p class="title">History</p>
+                    </div>
+        <div class="tasks">
+            <img src="assets/to-do-list.png" alt="tasks icon" width="30px" class="tasks-icon icon">
+                <p class="title">Tasks</p>
+                    </div>
+        <div class="communities">
+            <img src="assets/communities.png" alt="community icon" width="30px" class="communities-icon icon"> 
+                <p class="title">Communities</p>
+                    </div>
+        <div class="settings ">
+            <img src="assets/settings.png" alt="settings icon" width="30px" class="settings-icon icon">
+                <p class="title">Settings</p>
+                    </div>
+        <div class="support">
+            <img src="assets/support.png" alt="support icon" width="30px" class="support-icon icon">
+                <p class="title">Support</p>
+                    </div>
+        <div class="privacy">
+            <img src="assets/privacy.png" alt="privacy icon" width="30px" class="privacy-icon icon">
+                <p class="title">Privacy</p>
+                    </div>
     </div>
-        <!-- the cards/todo's will go in here -->
-    </main>
-    <!-- footer  -->
-    <footer class="footer-wrapper">
-        What a lovely day
-    </footer>
+    <div class="right-wrapper">
+        <header class="header">
+            <div class="header-first-row">
+                <div class="header-first-row-left">
+                    <img src="assets/search.png" alt="search icon" width="20px" class="search-icon">
+                        <input type="text" class="search-bar" placeholder="This is just a fake search bar">
+                            </div>
+                <div class="header-first-row-right">
+                    <img src="assets/notification.png" alt="notification icon" width="20px" class="notification-icon"> 
+                        <img src="assets/janaiscoding.png" alt="user profile picture" width="30px" class="profile-picture">
+                            <div class="user-name"><a href="https://github.com/JanaIsCoding" class="user-name">Profile</a></div>
+                                </div>
+                                    </div>
+            <div class="header-second-row">
+                <div class="header-second-row-left">
+                    <img src="assets/janaiscoding.png" alt="user profile picture" width="50px" class="profile-picture">
+                        <div class="greeting">
+                            <p class="greeting-text">Hi there,</p>
+                                <div class="user-name-bio"><a href="https://github.com/JanaIsCoding" class="user-name-bio">Jana (@JanaIsCoding)</a></div>
+                                    </div>
+                                        </div>
+                <!-- <div class="header-second-row-right">    
+                    <button class="btn-new">New</button>
+                        <button class="btn-upload">Upload</button>
+                            <button class="btn-share">Share</button>
+                                </div>
+                                    </div> -->
+            </header>
+        <main class="content-container">
+            <div class="library-space">
+                <div class="left-content-title">To Do List</div>
+                    <!-- injected library yay -->
+                </div>
+            <div class="right-content">
+                    <div class="right-content-title">Add To Do</div>
+                    <div class="form-container">
+                    <form class="library-form">
+                        <label for="title">Title*:</label>
+                        <input 
+                        type="text" 
+                        id="title" 
+                        name="title" 
+                        required
+                        maxlength="100">
+
+                        <label for="description">Description*:</label>
+                        <input 
+                        type="text" 
+                        id="description" 
+                        name="description" 
+                        required
+                        maxlength="100">
+
+                        <label for="date">Due Date*:</label>
+                        <input 
+                        type="number"
+                        id="date" 
+                        name="date" 
+                        required
+                        maxlength="5000">
+                         
+
+                        <label for="priority">Priority*:</label>
+                        <select id="priority" name="priority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                          </select>
+                    </div>
+                    <div class="buttons-wrapper">
+                        <button class="add-book" type="submit">Submit</button>
+                         <button class="clear-inputs" type="button">Clear</button>
+                        </div>
+                    </form>
+                    </div> 
+                </div>         
+        </main>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
