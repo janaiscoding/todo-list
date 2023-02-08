@@ -7,3 +7,17 @@ console.log(newtask1);
 const project1 = new Project('Work');
 
 const content = document.querySelector('.content')
+
+
+// MODAL & MODAL CONTENT 
+const modal = document.querySelector('.modal');
+const openModalBtn = document.querySelector('.open-modal');
+const closeModalBtn = document.querySelector('.close-modal');
+openModalBtn.onclick = function(){
+     modal.style.display = "block";
+     openModalBtn.style.display = "none";
+}
+closeModalBtn.onclick = function(){
+    modal.style.display = "none";
+    openModalBtn.style.display = "block";
+}
