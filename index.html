@@ -5,9 +5,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- header space -->
+    <header class="header-wrapper">
+        <a href="https://janaiscoding.github.io/todo-list/" class="logo">to Do-It!</a>
+        <a href="https://github.com/janaiscoding" class="contact-link" target="_blank">Contact</a>
+    </header>
+    <!-- full webpage content -->
+    <main class="main">
+        <!-- sidebar for projects navigation -->
+        <div class="sidebar">
+
+            <!-- space for predefined lists -->
+            <div class="lists-title">My Lists</div>
+            <ul class="predefined-lists">
+                <li class="inbox">Inbox</li>
+                <li class="today-list">Today</li>
+                <li class="week-list">This week</li>
+            </ul>
+
+            <!-- space for projects -->
+            <div class="lists-title">Projects</div>
+            <ul class="js-lists">
+                <li>dummy proj</li>
+            </ul>
+            <div class="add-project">Add Project</div>
+
+        </div>
+        <!-- tasks list preview -->
+        <div class="content">
+            <p class="title">Your Tasks</p>
+            <div class="card">
+                <p class="todo-name">Dummy to do</p>
+                
+            </div>
+            <div class="card">
+                <p class="todo-name">Dummy to do 2</p>
+                
+            </div>
+            
+            <div class="to-do-container">
+                <!-- inject to dos here -->
+            </div>
+            <!-- modal for adding a new task -->
+            <div class="modal" id="hidden">
+                <form class="add-task-form">
+     
+                    <label for="title">Title</label>
+                    <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                    maxlength="100">
+
+                    <label for="description">Description</label>
+                    <input
+                    type="text"
+                    id="description"
+                    name="description"
+                    required
+                    maxlength="100">
+                    
+                    <label for="description">Priority</label>
+                    <input
+                    type="text"
+                    id="description"
+                    name="description"
+                    required
+                    maxlength="100">
+                    <button class="add-task" type="submit">Add</button>
+                    <button class="close-modal">Close</button>
+                </form>
+                
+            </div>
+            <div class="open-modal add-button">Add Task</div>
+        </div>
+    </main>
     <script src="main.js"></script>
-    <div class="content"></div>
 </body>
 </html>
