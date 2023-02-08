@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do List</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/fd2b67e26b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- header space -->
+    <!-- HEADER-->
     <header class="header-wrapper">
         <a href="https://janaiscoding.github.io/todo-list/" class="logo">to Do-It!</a>
         <a href="https://github.com/janaiscoding" class="contact-link" target="_blank">Contact</a>
     </header>
-    <!-- full webpage content -->
+    <!-- MAIN CONTENT: NAVIGATION + TO DO CONTAINTER -->
     <main class="main">
-        <!-- sidebar for projects navigation -->
+        <!-- PROJECTS NAV -->
         <div class="sidebar">
 
-            <!-- space for predefined lists -->
+            <!-- PREDEFINED LISTS -->
             <div class="lists-title">My Lists</div>
             <ul class="predefined-lists">
                 <li class="inbox">Inbox</li>
@@ -26,30 +27,60 @@
                 <li class="week-list">This week</li>
             </ul>
 
-            <!-- space for projects -->
+            <!-- JS PROJECTS -->
             <div class="lists-title">Projects</div>
             <ul class="js-lists">
-                <li>dummy proj</li>
+                <li>Dummy</li>
             </ul>
-            <div class="add-project">Add Project</div>
+            <!-- ADD PROJECT MODAL -->
+            <div class="project-modal">
+                <form class="add-project-form">
+                    <label for="project">Title</label>
+                    <input 
+                    type="text"
+                    id="project"
+                    name="project"
+                    required
+                    maxlength="100">
+                </form>
+                <div class="open-proj-modal add-project">Add Project</div>
+            </div>
 
         </div>
-        <!-- tasks list preview -->
+        <!-- VIEW TASKS -->
         <div class="content">
             <p class="title">Your Tasks</p>
-            <div class="card">
-                <p class="todo-name">Dummy to do</p>
-                
-            </div>
-            <div class="card">
-                <p class="todo-name">Dummy to do 2</p>
-                
-            </div>
-            
+            <!-- SHOW THE ARRAY OF TASKS HERE -->
             <div class="to-do-container">
+                <div class="card">
+                    <div class="card-wrapper-one">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <p class="todo-name">Dummy to do</p>
+                    </div>
+                    <p class="description">Gotta do it soon </p>
+                    <div class="card-wrapper-two">
+                        <p class="priority-high">High</p>
+                        <p class="due-date">12/04/2023</p>
+                        <i class="fa-regular fa-circle-xmark"></i>
+                    </div>
+                </div>
+            
+                <div class="card">
+                    <div class="card-wrapper-one">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <p class="todo-name">Dummy to do</p>
+                    </div>
+                    <p class="description">Gotta do it soon </p>
+                    <div class="card-wrapper-two">
+                        <p class="priority-low">Low</p>
+                        <p class="due-date">24/04/2023</p>
+                        <i class="fa-regular fa-circle-xmark"></i>
+                    </div>
+                </div>
+                
                 <!-- inject to dos here -->
             </div>
-            <!-- modal for adding a new task -->
+            <!-- ADD TASK MODAL -->
             <div class="modal" id="hidden">
                 <form class="add-task-form">
      
@@ -67,15 +98,16 @@
                     id="description"
                     name="description"
                     required
-                    maxlength="100">
+                    maxlength="100"/>
                     
-                    <label for="description">Priority</label>
-                    <input
-                    type="text"
-                    id="description"
-                    name="description"
-                    required
-                    maxlength="100">
+                    <label for="priority">Priority</label>
+                    <select id="priority" name="priority">
+                        <option value="low">Low</option>
+                        <option value="high">High</option>
+                    </select>
+                    <label for="date">Due Date</label>
+                    <input type="date" id="date" name="date"/>
+
                     <button class="add-task" type="submit">Add</button>
                     <button class="close-modal">Close</button>
                 </form>

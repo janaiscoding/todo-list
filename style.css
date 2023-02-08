@@ -111,9 +111,15 @@ li:hover {
     color: var(--primary-brown);
     padding-left: 5%;
 }
+
+/* CARD STYLING*/
 .card {
+    display: flex;
+    justify-content: space-between;
     padding: 10px 5% 10px 5%;
     margin: 10px 0px;
+    align-items: center;
+    align-content: center;
 }
 .todo-name{
     font-weight: 200;
@@ -122,6 +128,30 @@ li:hover {
     background-color: #2e2b2b2d;
     border-radius: 5px;
 }
+.card-wrapper-one,
+.card-wrapper-two{
+    display:flex;
+    gap: 10px;
+    justify-items: center;
+    align-self: center;
+}
+.description {
+    padding: 0px 10px;
+}
+.priority-high{
+    color:var(--primary-red);
+}
+.priority-low{
+    color:var(--primary-green);
+}
+i {
+    align-self: center;
+    justify-self: center;
+}
+i:hover{
+    cursor: pointer;
+}
+
 /* MODAL & MODAL CONTENT */
 .modal {
     display:none;
@@ -131,7 +161,6 @@ li:hover {
     color: var(--primary-brown);
     border-radius: 5px;
     padding: 10px 20px 10px 5%;
-    height: 100px;
 }
 .open-modal{
     font-weight: 200;
@@ -145,10 +174,38 @@ li:hover {
     background-color: #2e2b2b2d;
     border-radius: 5px; 
 }
+
 .add-task,
 .close-modal{
-    color: #000;
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 29px;
+  padding: 0 10px 0 11px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: 100px;
 }
+
+.add-task:hover {
+  background-color: #51894d90;
+}
+.close-modal:hover {
+    background-color: var(--primary-red);
+    color:var(--primary-beige);
+  }
+
+
 
 
 
