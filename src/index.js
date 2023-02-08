@@ -1,8 +1,9 @@
 import Task from './modules/createTask';
+import Project from './modules/createProject';
 
+const newtask1 = new Task('learn','js','02/08/2022','Low')
+console.log(newtask1);
 
-const newtask = new Task('learn','js','01-12-2022','Low')
-console.log(newtask);
-const newtask2 = new Task('lear131231n','js','01-12-2022','High')
-console.log(newtask2);
+const project1 = new Project('Work');
 
+const content = document.querySelector('.content')

@@ -1,13 +1,11 @@
+//make a new task 
+
 export default class Task { 
-    constructor(
-        title = 'Default Title',
-        description ='Default Description',
-        dueDate = 'No Date Selected',
-        priority = [Low, Medium, High]) {
-        this.title = title
-        this.description = description
-        this.dueDate = dueDate
-        this.priority = priority
+    constructor(title,description,dueDate,priority) {
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
     }
 
     setTitle(title){
@@ -35,9 +33,9 @@ export default class Task {
     }
 
     getDateFormatted(){
-        const day = this.dueDate.split('/')[0]
-        const month = this.dueDate.split('/')[1]
-        const year = this.dueDate.split('/')[2]
-        return `${month}/${day}/${year}`;
+        const day = this.dueDate.split('/')[0];
+        const month = this.dueDate.split('/')[1];
+        const year = this.dueDate.split('/')[2];
+        return `${day}/${month}/${year}`;
     }
 }
