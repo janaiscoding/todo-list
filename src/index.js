@@ -9,15 +9,19 @@ const project1 = new Project('Work');
 const content = document.querySelector('.content')
 
 
-// MODAL & MODAL CONTENT 
-const modal = document.querySelector('.modal');
-const openModalBtn = document.querySelector('.open-modal');
-const closeModalBtn = document.querySelector('.close-modal');
-openModalBtn.onclick = function(){
-     modal.style.display = "block";
-     openModalBtn.style.display = "none";
+// ADD TASK MODAL
+const taskModal = document.querySelector('.modal');
+const openTaskModal = document.querySelector('.open-modal');
+const closeTaskModal = document.querySelector('.close-modal');
+openTaskModal.onclick = function(){
+    taskModal.style.display = "block";
+    openTaskModal.style.display = "none";
 }
-closeModalBtn.onclick = function(){
-    modal.style.display = "none";
-    openModalBtn.style.display = "block";
+closeTaskModal.onclick = function(){
+    taskModal.style.display = "none";
+    openTaskModal.style.display = "block"; //also put this for the (form add) button.
 }
+// ADD PROJECT MODAL
+const projectModal = document.querySelector('.project-modal');
+const openProjModal = document.querySelector('.open-proj-modal');
+const closeProjModal = document.querySelector('.close-proj-modal')
