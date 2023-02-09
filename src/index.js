@@ -23,5 +23,13 @@ closeTaskModal.onclick = function(){
 }
 // ADD PROJECT MODAL
 const projectModal = document.querySelector('.project-modal');
-const openProjModal = document.querySelector('.open-proj-modal');
-const closeProjModal = document.querySelector('.close-proj-modal')
+const openProjModal = document.querySelector('.open-project-modal');
+const closeProjModal = document.querySelector('.close-project-modal')
+openProjModal.onclick = () => {
+    projectModal.style.display = "block";
+    openProjModal.style.display = "none";
+}
+closeProjModal.onclick = () => {
+    projectModal.style.display ="none";
+    openProjModal.style.display ="block";
+}
