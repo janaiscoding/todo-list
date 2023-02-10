@@ -86,14 +86,14 @@ li:hover {
     background-color: #fff8ea80;
     border-radius: 5px;
 }
-.add-project{
+.open-project-modal{
     padding-left: 20px;
     margin-top: 15px;
     font-weight: 200;
     color: var(--primary-beige);
 }
 
-.add-project:hover{
+.open-project-modal:hover{
     cursor: pointer;
     background-color: #51894d90;
     border-radius: 5px;
@@ -162,6 +162,9 @@ i:hover{
     border-radius: 5px;
     padding: 10px 20px 10px 5%;
 }
+.project-modal{
+    padding: 10px 20px 10px 5%;
+}
 .open-modal{
     font-weight: 200;
     color: var(--primary-grey);
@@ -176,7 +179,9 @@ i:hover{
 }
 
 .add-task,
-.close-modal{
+.close-modal,
+.add-project,
+.close-project-modal{
   background-color: #fff;
   border: 1px solid #d5d9d9;
   border-radius: 8px;
@@ -197,18 +202,23 @@ i:hover{
   width: 100px;
 }
 
-.add-task:hover {
+.add-task:hover,
+.add-project:hover {
   background-color: #51894d90;
 }
-.close-modal:hover {
+.close-modal:hover,
+.close-project-modal:hover {
     background-color: var(--primary-red);
     color:var(--primary-beige);
   }
 
 
-
-
-
+.open-project-modal {
+    display:block;
+}
+.project-modal{
+    display:none;
+}
 
 
 
