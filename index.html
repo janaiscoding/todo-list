@@ -35,21 +35,24 @@
             <!-- ADD PROJECT MODAL -->
             <div class="project-modal">
                 <form class="add-project-form">
-                    <input 
+                    <input class="input-project"
                     type="text"
                     id="project"
                     name="project"
                     required
                     maxlength="100">
-                    <button class="add-project" type="submit">Add</button>
-                    <button class="close-project-modal">Close</button>
+
+                    <div class="project-form-btns-wrapper">
+                        <button class="add-project" type="submit">Add</button>
+                        <button class="close-project-modal">Close</button>
+                    </div>
                 </form>
             </div>
             <div class="open-project-modal">Add Project</div>
         </div>
         <!-- VIEW TASKS -->
         <div class="content">
-            <p class="title">Your Tasks</p>
+            <p class="title">My Tasks</p>
             <!-- SHOW THE ARRAY OF TASKS HERE -->
             <div class="to-do-container">
                 <div class="card">
@@ -92,7 +95,7 @@
                     required
                     maxlength="100">
 
-                    <label for="description">Description</label>
+                    <label for="description">Notes</label>
                     <input
                     type="text"
                     id="description"
