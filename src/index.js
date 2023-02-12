@@ -33,3 +33,23 @@ closeProjModal.onclick = () => {
     projectModal.style.display ="none";
     openProjModal.style.display ="block";
 }
+
+//CREATE CONTENT 
+
+// MAKE A NEW PROJECT DOM 
+
+
+
+// GET TASK FROM FORM 
+const taskForm = document.querySelector('.add-task-form');
+
+taskForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+    const priority = document.getElementById('priority').value;
+    const date = document.getElementById('date').value;
+    
+
+})
