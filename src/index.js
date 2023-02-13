@@ -9,9 +9,7 @@ console.log(newTask1);
 //CREATE CONTENT 
 
 // MAKE A NEW PROJECT DOM 
-
-let newProject = new Project('Test');
-console.log(newProject)
+// SET THE DEFAULT LIST WHICH CONTAINS THE PROJECT WHICH CONTAINS ALL THE TASKS
 
 
 // GET TASK FROM FORM 
