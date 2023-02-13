@@ -7,6 +7,8 @@ console.log(newTask1);
 
 
 //CREATE CONTENT 
+let SELECTEDLIST = new List('SELECTEDLIST');
+let SELECTEDPROJECT = new Project('SELECTEDPROJECT') 
 
 // MAKE A NEW PROJECT DOM 
 // SET THE DEFAULT LIST WHICH CONTAINS THE PROJECT WHICH CONTAINS ALL THE TASKS
@@ -14,7 +16,6 @@ console.log(newTask1);
 
 // GET TASK FROM FORM 
 const taskForm = document.querySelector('.add-task-form');
-const closeForm = document.querySelector('.close-modal')
 taskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -24,13 +25,37 @@ taskForm.addEventListener('submit', (e) => {
     const date = document.getElementById('date').value;
     
     const newTask = new Task(title,description,priority,date);
-    newProject.addTask(newTask);
+    SELECTEDPROJECT.addTask(newTask);
     displayTasks();
     clearInput();
-    console.log(newProject.getTasks())
+    closeTaskModal();
+   console.log(SELECTEDPROJECT.getTasks())
 })
 
-//REFRESH USER INPUTS (converted to function expression)
+// GET PROJECT FROM FORM
+const projectForm = document.querySelector('.add-project-form') 
+projectForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('project');
+    const newProject = new Project(title);
+    SELECTEDLIST.addProject(newProject);
+    displayProjects();
+    clearProjectInputs();
+    closeProjModal();
+})
+
+const displayProjects = function(){
+    const projectsContainer = document.querySelector('.js-lists');
+
+    const allProjects = document.querySelectorAll('.proj');
+    allProjects.forEach(liElement => projectsContainer.removeChild(liElement))
+    for (let i = 0; i <= SELECTEDLIST.projects.length-1;i++){
+        createProjectLi(SELECTEDLIST.projects[i]);
+    }
+}
+
+
+//REFRESH USER INPUTS FOR TASKS (converted to function expression)
 const clearInput = function() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = ''; 
@@ -38,6 +63,13 @@ const clearInput = function() {
     document.getElementById('date').value= '';
 }
 
+let createProjectLi = (project) => {
+    const projectsContainer = document.querySelector('.js-lists');
+    const proj = document.createElement('li');
+    proj.classList.add('proj');
+    proj.textContent = project.projects;
+    projectsContainer.append(proj);
+}
 
 // DOM TASK CARD
 // function createTaskCard(task) (converted to arrow function)
@@ -101,8 +133,8 @@ const displayTasks = function(){
 
     const allTasks = document.querySelectorAll('.card');
     allTasks.forEach(card => taskContainer.removeChild(card))
-    for (let i = 0; i <= newProject.tasks.length-1;i++){
-        createTaskCard(newProject.tasks[i]);
+    for (let i = 0; i <= SELECTEDPROJECT.tasks.length-1;i++){
+        createTaskCard(SELECTEDPROJECT.tasks[i]);
     }
 }
 
