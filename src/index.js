@@ -14,7 +14,7 @@ console.log(newTask1);
 
 // GET TASK FROM FORM 
 const taskForm = document.querySelector('.add-task-form');
-
+const closeForm = document.querySelector('.close-modal')
 taskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -110,11 +110,13 @@ const displayTasks = function(){
 const taskModal = document.querySelector('.modal');
 const openTaskModal = document.querySelector('.open-modal');
 const closeTaskModal = document.querySelector('.close-modal');
-openTaskModal.onclick = function(){
+openTaskModal.onclick = function(e){
+    e.preventDefault();
     taskModal.style.display = "block";
     openTaskModal.style.display = "none";
 }
-closeTaskModal.onclick = function(){
+closeTaskModal.onclick = function(e){
+    e.preventDefault();
     taskModal.style.display = "none";
     openTaskModal.style.display = "block"; //also put this for the (form add) button.
 }
@@ -122,11 +124,13 @@ closeTaskModal.onclick = function(){
 const projectModal = document.querySelector('.project-modal');
 const openProjModal = document.querySelector('.open-project-modal');
 const closeProjModal = document.querySelector('.close-project-modal')
-openProjModal.onclick = () => {
+openProjModal.onclick = (e) => {
+    e.preventDefault();
     projectModal.style.display = "block";
     openProjModal.style.display = "none";
 }
-closeProjModal.onclick = () => {
+closeProjModal.onclick = (e) => {
+    e.preventDefault();
     projectModal.style.display ="none";
     openProjModal.style.display ="block";
 }
