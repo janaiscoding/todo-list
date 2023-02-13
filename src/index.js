@@ -28,11 +28,22 @@ taskForm.addEventListener('submit', (e) => {
     const newTask = new Task(title,description,priority,date);
     newProject.addTask(newTask);
     displayTasks();
+    clearInput();
     console.log(newProject.getTasks())
 })
 
+//REFRESH USER INPUTS (converted to function expression)
+const clearInput = function() {
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = ''; 
+    document.getElementById('priority').value = 'Low';
+    document.getElementById('date').value= '';
+}
+
+
 // DOM TASK CARD
-function createTaskCard(task){
+// function createTaskCard(task) (converted to arrow function)
+let createTaskCard = (task) => {
     const taskContainer = document.querySelector('.task-container');
     const card = document.createElement('div');
     card.classList.add('card');
@@ -86,8 +97,8 @@ function createTaskCard(task){
     taskContainer.append(card);
 }
 
-// DISPLAY THE TASKS 
-function displayTasks(){
+// DISPLAY THE TASKS -> (converted to function expression)
+const displayTasks = function(){
     const taskContainer = document.querySelector('.task-container');
 
     const allTasks = document.querySelectorAll('.card');
@@ -95,9 +106,7 @@ function displayTasks(){
     for (let i = 0; i <= newProject.tasks.length-1;i++){
         createTaskCard(newProject.tasks[i]);
     }
-
 }
-
 
 // ADD TASK MODAL
 const taskModal = document.querySelector('.modal');
