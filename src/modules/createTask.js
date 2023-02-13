@@ -1,11 +1,11 @@
 //make a new task 
 
 export default class Task { 
-    constructor(title,description,dueDate,priority) {
+    constructor(title,description,priority,dueDate) {
         this.title = title;
         this.description = description;
-        this.dueDate = dueDate;
         this.priority = priority;
+        this.dueDate = dueDate;
     }
 
     setTitle(title){

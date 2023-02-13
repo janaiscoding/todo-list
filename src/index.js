@@ -10,10 +10,9 @@ console.log(newTask1);
 
 // MAKE A NEW PROJECT DOM 
 
-let newProject = new Project();
-newProject.setTitle('Test');
+let newProject = new Project('Test');
 console.log(newProject)
-console.log(newProject.getTitle())
+
 
 // GET TASK FROM FORM 
 const taskForm = document.querySelector('.add-task-form');
@@ -29,14 +28,8 @@ taskForm.addEventListener('submit', (e) => {
     const newTask = new Task(title,description,priority,date);
     newProject.addTask(newTask);
     displayTasks();
+    console.log(newProject.getTasks())
 })
-
-// TEMP CHECKING
-function updateConsole(){
-return console.log(newProject.getTasks())
-}
-const templogoshit = document.querySelector(".fa-circle-check")
-templogoshit.addEventListener('click', () => updateConsole()) 
 
 // DOM TASK CARD
 function createTaskCard(task){
@@ -68,9 +61,12 @@ function createTaskCard(task){
     priorityCard.textContent = task.priority;
 
     //CHECKING FOR PRIORITY STATUS
-    if(task.priority === 'High') {
-        priorityCard.classList.add('priority-high');
-    } else priorityCard.classList.add('priority-low');
+     if(priorityCard.textContent === 'High') {
+         priorityCard.classList.add('priority-high');
+    } 
+    else if(priorityCard.textContent === 'Low'){
+         priorityCard.classList.add('priority-low');
+    }
 
     const dueDateCard = document.createElement('p');
     dueDateCard.classList.add('due-date');
@@ -85,7 +81,7 @@ function createTaskCard(task){
 
     // APPENDING ALL 
     cardWrapperOne.append(iconCircle,taskName);
-    cardWrapperTwo.append(priorityCard, dueDateCard, iconXmark);
+    cardWrapperTwo.append(priorityCard, dueDateCard,iconXmark);
     card.append(cardWrapperOne,descriptionCard,cardWrapperTwo);
     taskContainer.append(card);
 }
