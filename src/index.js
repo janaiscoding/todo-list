@@ -8,7 +8,7 @@ console.log(newTask1);
 
 //CREATE CONTENT 
 let myList = new List();
-let myProject;
+let myProject = new Project();
 // EVENT LISTENERS ON DEFAULT PROJECTS
 const inboxList = document.querySelector('.inbox');
 inboxList.onclick = function(){
