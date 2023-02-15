@@ -1,10 +1,8 @@
 //make a new project -> put task in it 
-
-import { toDate, isToday, isThisWeek, subDays } from 'date-fns'
-
 export default class Project {
-    constructor(title) {
+    constructor(title, id) {
         this.title = title;
+        this.id = id;
         this.tasks = [];
     }
 
@@ -24,35 +22,21 @@ export default class Project {
         return this.tasks;
     }
 
-    getTask(taskName) {
-        return this.tasks.find((task) => task.getTitle() === taskName)
+    getTask(taskTitle) {
+        return this.tasks.find((task) => task.getTitle() === taskTitle)
     }
 
-    contains(taskName) {
-        return this.tasks.some((task) => task.getTitle() === taskName)
+    contains(taskTitle) {
+        return this.tasks.some((task) => task.getTitle() === taskTitle)
     }
     
     addTask(newTask) {
-        if (this.tasks.find((task) => task.getTitle() === newTask.name)) return
+        if (this.tasks.find((task) => task.getTitle() === newTask.Title)) return
         this.tasks.push(newTask)
     }
     
-    deleteTask(taskName) {
-        this.tasks = this.tasks.filter((task) => task.name !== taskName)
-    }
-    
-    getTasksToday() {
-        return this.tasks.filter((task) => {
-          const taskDate = new Date(task.getDateFormatted())
-          return isToday(toDate(taskDate))
-        })
-    }
-    
-    getTasksThisWeek() {
-        return this.tasks.filter((task) => {
-          const taskDate = new Date(task.getDateFormatted())
-          return isThisWeek(subDays(toDate(taskDate), 1))
-        })
+    deleteTask(taskTitle) {
+        this.tasks = this.tasks.filter((task) => task.Title !== taskTitle)
     }
     
 }

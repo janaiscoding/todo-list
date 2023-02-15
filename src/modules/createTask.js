@@ -1,41 +1,20 @@
-//make a new task 
+
+let PROJECTS = [];
+let PROJECT_COUNTER = 0;
+let TASK_COUNTER = 0;
+
 
 export default class Task { 
-    constructor(title,description,priority,dueDate) {
+    constructor(title,description,priority,dueDate, projectID, taskID) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.dueDate = dueDate;
+        this.taskID = taskID;
+        this.projectID = projectID;
     }
-
-    setTitle(title){
-        this.title = title;
-    }
-
-    getTitle(){
-        return this.title;
-    }
-
-    setDate(dueDate){
-        this.dueDate = dueDate;
-    }
-
-    getDate(){
-        return this.dueDate;
-    }
-
-    setPriotity(priority){
-        this.priority = priority;
-    }
-
-    getPriority(){
-        return this.priority;
-    }
-
-    getDateFormatted(){
-        const day = this.dueDate.split('/')[0];
-        const month = this.dueDate.split('/')[1];
-        const year = this.dueDate.split('/')[2];
-        return `${day}/${month}/${year}`;
+    addTask(title,description,priority,dueDate, projectID)  {
+        let newTask = new Task(title,description,priority,dueDate, projectID,TASK_COUNTER);
+        let project = PROJECTS.find(project => project.id === projectID);
     }
 }
