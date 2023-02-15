@@ -1,42 +1,29 @@
-import Task from './modules/createTask';
-import Project from './modules/createProject';
-import List from './modules/createList';
-
-const newTask1 = new Task('learn','js','02/08/2022','Low')
-console.log(newTask1);
-
+import TodoList from "./modules/createList";
+import Task from "./modules/createTask";
+import Project from "./modules/createProject";
 
 //CREATE CONTENT 
-let myList = new List();
-let myProject = new Project();
-// EVENT LISTENERS ON DEFAULT PROJECTS
-const inboxList = document.querySelector('.inbox');
-inboxList.onclick = function(){
-myProject = myList.setProjects('Inbox');
-console.log(myList)
-}
+let myList = new TodoList(); //initialize the list
+myList.addProject(new Project('dummy'))
+myList.addProject(new Project('dummy2'))
 
-// MAKE A NEW PROJECT DOM 
-// SET THE DEFAULT LIST WHICH CONTAINS THE PROJECT WHICH CONTAINS ALL THE TASKS
-
+let myProject = myList.getProject('Inbox')
+myProject.addTask(new Task("asddddd", "asd", "20-02-2032","High"))
+console.log(myList);
 
 // GET TASK FROM FORM 
 const taskForm = document.querySelector('.add-task-form');
 taskForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
     const priority = document.getElementById('priority').value;
-    const date = document.getElementById('date').value;
-    
-    const newTask = new Task(title,description,priority,date);
-    myProject.addTask(newTask);
+    const date = document.getElementById('date').value; 
+    myProject.addTask(new Task(title,description,priority,date));
     displayTasks();
     clearInput();
     taskModal.style.display = "block";
     openTaskModal.style.display = "none";
-    console.log(myProject.getTasks())
 })
 
 //REFRESH USER INPUTS FOR TASKS
@@ -60,11 +47,11 @@ let createTaskCard = (task) => {
     iconCircle.classList.add('fa-regular');
     iconCircle.classList.add('fa-circle-check');
 
-    const taskName = document.createElement('p');
-    taskName.classList.add('task-name');
-    taskName.textContent = task.title;
+    const tasktitle = document.createElement('p');
+    tasktitle.classList.add('task-title');
+    tasktitle.textContent = task.title;
 
-    cardWrapperOne.append(iconCircle,taskName);
+    cardWrapperOne.append(iconCircle,tasktitle);
 
     const descriptionCard = document.createElement('p');
     descriptionCard.classList.add('description');
@@ -96,7 +83,7 @@ let createTaskCard = (task) => {
 
 
     // APPENDING ALL 
-    cardWrapperOne.append(iconCircle,taskName);
+    cardWrapperOne.append(iconCircle,tasktitle);
     cardWrapperTwo.append(priorityCard, dueDateCard,iconXmark);
     card.append(cardWrapperOne,descriptionCard,cardWrapperTwo);
     taskContainer.append(card);
@@ -118,8 +105,7 @@ const projectForm = document.querySelector('.add-project-form')
 projectForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const title = document.getElementById('project').value;
-    const newProject = new Project(title);
-    myList.addProject(newProject);
+    myList.addProject(new Project(title));
     displayProjects();
     clearProjectsInput();
     projectModal.style.display ="none";
@@ -136,19 +122,16 @@ const displayProjects = function(){
     const allProjects = document.querySelectorAll('.proj');
     allProjects.forEach(liElement => projectsContainer.removeChild(liElement))
     for (let i = 0; i <= myList.projects.length-1;i++){
-        if( !myList.projects[i].contains('Inbox') || 
-            !myList.projects[i].contains('Today') || 
-            !myList.projects[i].contains('This Week')){
-                createProjectLi(myList.projects[i]);
-            }
+        createProjectLi(myList.projects[i])     
     }
+    console.log(myList);
 }
 // CREATE CARD FOR PROJECT (DOM)
 let createProjectLi = (project) => {
     const projectsContainer = document.querySelector('.js-lists');
     const proj = document.createElement('li');
     proj.classList.add('proj');
-    proj.textContent = 'asd';
+    proj.textContent = project.title;
     projectsContainer.append(proj);
 }
 
@@ -182,3 +165,4 @@ closeProjModal.onclick = (e) => {
     projectModal.style.display ="none";
     openProjModal.style.display ="block";
 }
+displayProjects();

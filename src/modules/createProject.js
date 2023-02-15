@@ -1,42 +1,39 @@
-//make a new project -> put task in it 
 export default class Project {
-    constructor(title, id) {
-        this.title = title;
-        this.id = id;
-        this.tasks = [];
+    constructor(title) {
+      this.title = title
+      this.tasks = []
     }
-
-    setTitle(title){
-        this.title = title;
+  
+    setTitle(title) {
+      this.title = title
     }
-
-    getTitle(){
-        return this.title;
+  
+    getTitle() {
+      return this.title
     }
-
-    setTasks(tasks){
-        this.tasks = tasks;
+  
+    setTasks(tasks) {
+      this.tasks = tasks
     }
-
-    getTasks(){
-        return this.tasks;
+  
+    getTasks() {
+      return this.tasks
     }
-
-    getTask(taskTitle) {
-        return this.tasks.find((task) => task.getTitle() === taskTitle)
+  
+    getTask(tasktitle) {
+      return this.tasks.find((task) => task.getTitle() === tasktitle)
     }
-
-    contains(taskTitle) {
-        return this.tasks.some((task) => task.getTitle() === taskTitle)
+  
+    contains(tasktitle) {
+      return this.tasks.some((task) => task.getTitle() === tasktitle)
     }
-    
+  
     addTask(newTask) {
-        if (this.tasks.find((task) => task.getTitle() === newTask.Title)) return
-        this.tasks.push(newTask)
+      if (this.tasks.find((task) => task.getTitle() === newTask.title)) return
+      this.tasks.push(newTask)
     }
-    
-    deleteTask(taskTitle) {
-        this.tasks = this.tasks.filter((task) => task.Title !== taskTitle)
+  
+    deleteTask(tasktitle) {
+      this.tasks = this.tasks.filter((task) => task.title !== tasktitle)
     }
-    
 }
