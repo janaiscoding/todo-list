@@ -3,14 +3,12 @@ import Task from "./modules/createTask";
 import Project from "./modules/createProject";
 
 //CREATE CONTENT 
-let myList = new TodoList(); //initialize the list
-myList.addProject(new Project('dummy'))
-myList.addProject(new Project('dummy2'))
+let myList = new TodoList(); //initialize the list which encapsulates every project
 
-let myProject = myList.getProject('Inbox')
+let projectID = 1; //starts at one because the default is Inbox with id 0 
+let myProject = myList.getProject('Inbox') //grab the initial project
 myProject.addTask(new Task("asddddd", "asd", "20-02-2032","High"))
-console.log(myList);
-
+console.log(myProject)
 // GET TASK FROM FORM 
 const taskForm = document.querySelector('.add-task-form');
 taskForm.addEventListener('submit', (e) => {
@@ -43,15 +41,9 @@ let createTaskCard = (task) => {
     const cardWrapperOne = document.createElement('div');
     cardWrapperOne.classList.add('card-wrapper-one');
 
-    const iconCircle = document.createElement('i')
-    iconCircle.classList.add('fa-regular');
-    iconCircle.classList.add('fa-circle-check');
-
     const tasktitle = document.createElement('p');
     tasktitle.classList.add('task-title');
     tasktitle.textContent = task.title;
-
-    cardWrapperOne.append(iconCircle,tasktitle);
 
     const descriptionCard = document.createElement('p');
     descriptionCard.classList.add('description');
@@ -81,9 +73,13 @@ let createTaskCard = (task) => {
 
     // TO ADD COMPLETE/DELETE FUNCTIONS BINDED TO ICONS
 
+    iconXmark.addEventListener('click', () => {
+        myProject.deleteTask(task.title);
+        displayTasks();
+    })
 
     // APPENDING ALL 
-    cardWrapperOne.append(iconCircle,tasktitle);
+    cardWrapperOne.append(tasktitle);
     cardWrapperTwo.append(priorityCard, dueDateCard,iconXmark);
     card.append(cardWrapperOne,descriptionCard,cardWrapperTwo);
     taskContainer.append(card);
@@ -105,7 +101,8 @@ const projectForm = document.querySelector('.add-project-form')
 projectForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const title = document.getElementById('project').value;
-    myList.addProject(new Project(title));
+    myList.addProject(new Project(title,projectID));
+    projectID++;
     displayProjects();
     clearProjectsInput();
     projectModal.style.display ="none";
@@ -122,20 +119,31 @@ const displayProjects = function(){
     const allProjects = document.querySelectorAll('.proj');
     allProjects.forEach(liElement => projectsContainer.removeChild(liElement))
     for (let i = 0; i <= myList.projects.length-1;i++){
-        createProjectLi(myList.projects[i])     
+        createProjectLi(myList.projects[i])   
     }
     console.log(myList);
+    handleProjects();
 }
 // CREATE CARD FOR PROJECT (DOM)
 let createProjectLi = (project) => {
     const projectsContainer = document.querySelector('.js-lists');
     const proj = document.createElement('li');
     proj.classList.add('proj');
+    proj.id = project.id;
     proj.textContent = project.title;
     projectsContainer.append(proj);
 }
+//EVENT LISTENER ON PROJECT CLICK -> Swap selected project and update tasks.
+const handleProjects = function(){
+const allProjects = document.querySelectorAll('.proj');
+allProjects.forEach((liElement) => {
+    liElement.addEventListener('click', ()=>{
+        myProject = myList.getProject(liElement.innerHTML)
+        displayTasks();
+    })
+})
 
-
+}
 // ADD TASK MODAL
 const taskModal = document.querySelector('.modal');
 const openTaskModal = document.querySelector('.open-modal');
@@ -166,3 +174,4 @@ closeProjModal.onclick = (e) => {
     openProjModal.style.display ="block";
 }
 displayProjects();
+displayTasks();

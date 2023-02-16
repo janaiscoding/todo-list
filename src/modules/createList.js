@@ -3,7 +3,7 @@ import Project from "./createProject"
 export default class TodoList {
   constructor() {
     this.projects = []
-    this.projects.push(new Project('Inbox'))
+    this.projects.push(new Project('Inbox', 0))
   }
 
   setProjects(projects) {
