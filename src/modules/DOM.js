@@ -78,14 +78,14 @@ export default class UI{
    static openProjectModal(){
     const projectModal = document.querySelector('.project-modal');
     const openProjModal = document.querySelector('.open-project-modal');
-        projectModal.style.display = "block";
-        openProjModal.style.display = "none";
+        projectModal.style.display = "block"
+        openProjModal.style.display = "none"
    }
 
    static closeProjectModal(){
     const projectModal = document.querySelector('.project-modal');
     const openProjModal = document.querySelector('.open-project-modal');
-        projectModal.style.display ="none";
-        openProjModal.style.display ="block";   
+        projectModal.style.display ="none"
+        openProjModal.style.display ="block"
    }
 }
