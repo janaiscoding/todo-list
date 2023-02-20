@@ -36,7 +36,7 @@ export default class UI{
         return
     }
     Storage.addProject(new Project(projectName))
-    UI.createProject();
+    UI.createProject(projectName);
     UI.clearProjectModalInput();
     UI.closeProjectModal();
     
@@ -61,6 +61,7 @@ export default class UI{
     const openProjModal = document.querySelector('.open-project-modal');
     const closeProjModal = document.querySelector('.close-project-modal');
     const addProjBtn = document.querySelector('.add-project');
+    const deleteProjectBtns = document.querySelectorAll('.delete-project');
 
     openProjModal.addEventListener('click',UI.openProjectModal)
     closeProjModal.addEventListener('click', (e) =>{
@@ -73,6 +74,14 @@ export default class UI{
         e.preventDefault();
         UI.addProject();
     })
+
+    deleteProjectBtns.forEach((deleteProjBtn) =>
+    deleteProjBtn.addEventListener('click', (e) =>{
+        UI.deleteProject(e);
+        UI.clearProjects();
+        UI.loadProjects();
+    }) 
+    )
    }
 
    static openProjectModal(){
