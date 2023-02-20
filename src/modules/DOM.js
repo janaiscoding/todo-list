@@ -29,7 +29,7 @@ export default class UI{
     if(projectName === '' ){
         alert('Please insert project name')
         return
-    }
+    } 
     if(Storage.getTodoList().contains(projectName)){
         alert('You already have this project, silly')
         UI.clearProjectModalInput();
@@ -37,9 +37,7 @@ export default class UI{
     }
     Storage.addProject(new Project(projectName))
     UI.createProject(projectName);
-    UI.clearProjectModalInput();
     UI.closeProjectModal();
-    
    }     
 
    static clearProjectModalInput(){
@@ -63,7 +61,10 @@ export default class UI{
     const addProjBtn = document.querySelector('.add-project');
     const deleteProjectBtns = document.querySelectorAll('.delete-project');
 
-    openProjModal.addEventListener('click',UI.openProjectModal)
+    openProjModal.addEventListener('click', () => {
+        UI.clearProjectModalInput();
+        UI.openProjectModal();
+     } )
     closeProjModal.addEventListener('click', (e) =>{
         e.preventDefault();
         UI.clearProjectModalInput();
