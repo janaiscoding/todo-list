@@ -6,7 +6,6 @@ import Task from "./createTask";
 export default class UI{
     static loadHomepage(){
         UI.loadProjects()
-        UI.handleMainProjBtns()
         UI.openProject('Inbox')
     }
     // LOAD EVERY PROJECT IN THE SIDEBAR
@@ -18,7 +17,7 @@ export default class UI{
                 UI.createProject(project.title)
             } 
         })
-        UI.handleMainProjBtns();
+        UI.handleMainProjBtns()
     }
    //LOAD TASKS FROM CURRENT PROJECT
    static loadTasks(projectName){
@@ -72,11 +71,12 @@ export default class UI{
    // SWAP THE FOCUSED PROJECT
    static openProject(projectName){
     const projectTitleDOM = document.querySelector('.title');
-    projectTitleDOM.innerHTML = projectName;
+    projectTitleDOM.textContent = projectName;
     UI.loadTasks(projectName);
 }
     // OPEN/CLOSE/ADD/DELETE/HANDLE PROJECT
    static handleMainProjBtns(){
+    const defaultProject = document.querySelector('.inbox-project')
     const openProjModal = document.querySelector('.open-project-modal');
     const closeProjModal = document.querySelector('.close-project-modal');
     const addProjBtn = document.querySelector('.add-project');
@@ -102,11 +102,15 @@ export default class UI{
 
     allProjects.forEach((project) => 
     project.addEventListener('click', (e) => {
-        let projectName = e.currentTarget.innerHTML;
+        let projectName = e.currentTarget.textContent;
+        console.log(projectName)
         UI.openProject(projectName);
-    }) )
-    }
+    }))
 
+    defaultProject.addEventListener('click', () => {
+        UI.openProject('Inbox')
+    })
+    } 
     // HANDLE OPEN MODAL - PROJECT
    static openProjectModal(){
     const projectModal = document.querySelector('.project-modal');
@@ -133,7 +137,7 @@ export default class UI{
     </div>
     <p class="description">${description}</p>
     <div class="card-wrapper-two">
-        <p class="priority-high">${priority}</p>
+        <p class="priority-${priority}">${priority}</p>
         <p class="due-date">${dueDate}</p>
         <i class="fa-regular fa-circle-xmark delete-task"></i>
     </div>
@@ -163,11 +167,20 @@ export default class UI{
     deleteTaskBtns.forEach((button) => {
         button.addEventListener('click', (e) => {
             let taskToDelete = e.currentTarget.parentElement.parentElement.firstElementChild.innerText;
-            let currentProject = document.querySelector('.title')
+            console.log(taskToDelete)
+            let currentProject = document.querySelector('.title').innerText
+            console.log(currentProject)
             UI.deleteTask(currentProject, taskToDelete)
-        }) //AM RAMAS AICI!!!!!!!!!
+            UI.clearTasks()
+            UI.loadTasks(currentProject)
+        })
     })
    }
+
+   static deleteTask(currentProject, taskToDelete){
+    Storage.deleteTask(currentProject,taskToDelete);
+   }
+
    static openTaskModal(){
     const taskModal = document.querySelector('.modal');
     const openTaskModal = document.querySelector('.open-modal')

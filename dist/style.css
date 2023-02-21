@@ -85,7 +85,8 @@ body {
 }
 
 li:hover,
-.proj-name:hover {
+.proj-name:hover,
+.inbox-project:hover {
     cursor: pointer;
     background-color: #fff8ea80;
     border-radius: 5px;
@@ -161,10 +162,10 @@ li:hover,
 .description {
     padding: 0px 10px;
 }
-.priority-high{
+.priority-High{
     color:var(--primary-red);
 }
-.priority-low{
+.priority-Low{
     color:var(--primary-green);
 }
 i {
