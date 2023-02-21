@@ -2,6 +2,7 @@ import UI from "./modules/DOM";
 import Storage from "./modules/Storage";
 import Project from "./modules/createProject";
 import Task from "./modules/createTask";
+import './style.css';
 
 //Full app functionability 
 document.addEventListener('DOMContentLoaded', UI.loadHomepage)

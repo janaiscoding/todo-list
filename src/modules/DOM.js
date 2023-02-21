@@ -5,45 +5,29 @@ import Task from "./createTask";
 
 export default class UI{
     static loadHomepage(){
-        UI.loadProjects()
-        UI.openProject('Inbox')
+        UI.loadProjects()//Load all projects from Storage.
+        UI.openProject('Inbox')//Always open 'Inbox' (Default) on page-load.
     }
-    // LOAD EVERY PROJECT IN THE SIDEBAR
+
     static loadProjects(){
-        Storage.getTodoList()
-        .getProjects()
-        .forEach((project) => {
-            if(project.title !== 'Inbox'){
-                UI.createProject(project.title)
+        Storage.getTodoList()//Fetch the List from Storage.
+        .getProjects() //Get all the Projects from List.
+        .forEach((project) => { //On Each Project,
+            if(project.title !== 'Inbox'){ //Except the Default,
+                UI.createProject(project.title) //Create HTML content.
             } 
         })
-        UI.handleMainProjBtns()
+        UI.handleMainProjBtns() //Initialize the Project Buttons.
     }
-   //LOAD TASKS FROM CURRENT PROJECT
-   static loadTasks(projectName){
+
+   static loadTasks(projectName){ //LOADS TASKS FROM STORAGE
      UI.handleMainTaskBtns()
      UI.clearTasks()
      let currentProject = Storage.getTodoList().getProject(projectName)
      let currentTasks = currentProject.getTasks()
      currentTasks.forEach((task) => UI.createTask(task.title, task.description,task.priority,task.dueDate))
     }
-
-    static clearTasks(){
-        const taskContainer = document.querySelector('.task-container')
-        taskContainer.innerHTML = ''
-    }
-
-    // HTML DOM SIDEBAR PROJECTS
-    static createProject(title){
-    const projectsContainer = document.querySelector('.js-lists');
-    projectsContainer.innerHTML += `
-    <div class="proj">
-    <li class="proj-name">${title}</li>
-    <i class="fa-regular fa-circle-xmark delete-project"></i>
-    </div>
-    `;
-    }
-    //ADD A PROJECT TO THE STORAGE
+    //ADD NEW CONTENT TO STORAGE
    static addProject(){
     const projectName = document.getElementById('project').value;
     if(projectName === '' ){
@@ -58,76 +42,121 @@ export default class UI{
     UI.loadProjects();
    }     
 
-   //DELETE PROJECT FROM STORAGE
+   static addTask(){
+    const projectName = document.querySelector('.title').textContent;
+
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+    const priority = document.getElementById('priority').value;
+    const date = document.getElementById('date').value; 
+    if (title === '' || date === '') {
+        return
+    }
+    Storage.addTask(projectName, new Task(title,description,priority,date));
+    UI.createTask(title,description,priority,date)
+   }
+
+   static openProject(projectName){ // OPEN THE CLICKED PROJECT
+    const projectTitleDOM = document.querySelector('.title');
+    projectTitleDOM.textContent = projectName;
+    UI.loadTasks(projectName);
+}
+
+
+   //DELETE CONTENT FROM STORAGE
+
    static deleteProject(projectName){
     Storage.deleteProject(projectName);
    }
-   // REFRESH AND CLEAR SIDEBAR
+
+   static deleteTask(currentProject, taskToDelete){ 
+    Storage.deleteTask(currentProject,taskToDelete);
+   }
+   //CLEAR HTML CONTENT 
+
    static clearProjects(){
     const projectsContainer = document.querySelector('.js-lists');
     projectsContainer.innerHTML="";
    }
 
-   // SWAP THE FOCUSED PROJECT
-   static openProject(projectName){
-    const projectTitleDOM = document.querySelector('.title');
-    projectTitleDOM.textContent = projectName;
-    UI.loadTasks(projectName);
-}
-    // OPEN/CLOSE/ADD/DELETE/HANDLE PROJECT
+   static clearTasks(){
+    const taskContainer = document.querySelector('.task-container')
+    taskContainer.innerHTML = ''
+    }
+
+   // BUTTONS PROJECT+TASK
    static handleMainProjBtns(){
-    const defaultProject = document.querySelector('.inbox-project')
-    const openProjModal = document.querySelector('.open-project-modal');
-    const closeProjModal = document.querySelector('.close-project-modal');
-    const addProjBtn = document.querySelector('.add-project');
-    const deleteProjectBtns = document.querySelectorAll('.delete-project');
-    const allProjects = document.querySelectorAll('.proj-name');
+    const defaultProject = document.querySelector('.inbox-project'); //Select Default Project(already in HTML).
+    const openProjModal = document.querySelector('.open-project-modal'); //Select Open Modal Button
+    const closeProjModal = document.querySelector('.close-project-modal'); //Select Close Modal Button
+    const addProjBtn = document.querySelector('.add-project'); //Select Add Project Button
+    const deleteProjectBtns = document.querySelectorAll('.delete-project'); //Select Delete Project Button
+    const allProjects = document.querySelectorAll('.proj-name'); //Select Project - on-click Event 
 
     openProjModal.onclick = UI.openProjectModal;
     closeProjModal.onclick = UI.closeProjectModal;
 
     addProjBtn.addEventListener('click', (e)=>{
-        e.preventDefault();
-        UI.addProject();
-        UI.closeProjectModal();
+        e.preventDefault(); //Avoid Form's default behaviour.
+        UI.addProject(); //Calls Function -> Add Project.
+        UI.closeProjectModal(); //Closes Form.
     })
 
-    deleteProjectBtns.forEach((button) => 
-        button.addEventListener('click', (e) => {
-        let projectName = e.currentTarget.parentElement.firstElementChild.innerHTML;
-        UI.deleteProject(projectName);
-        UI.clearProjects();
-        UI.loadProjects();
+    deleteProjectBtns.forEach((button) => //Select All Buttons.
+        button.addEventListener('click', (e) => { //Find clicked Button.
+        let projectName = e.currentTarget.parentElement.firstElementChild.innerHTML; //Find Selected Project
+        UI.deleteProject(projectName); //Delete Project.
+        UI.clearProjects(); //Clear Sidebar.
+        UI.loadProjects(); //Reload existing Projects from Storage.
     }))
 
     allProjects.forEach((project) => 
-    project.addEventListener('click', (e) => {
-        let projectName = e.currentTarget.textContent;
-        console.log(projectName)
-        UI.openProject(projectName);
+    project.addEventListener('click', (e) => { //Find clicked Project.
+        let projectName = e.currentTarget.textContent; //Select Project.
+        UI.openProject(projectName); //Open Project's Tasks.
     }))
-
-    defaultProject.addEventListener('click', () => {
+    //Default project function (Without this, it seems that my functions are repeating twice)
+    defaultProject.addEventListener('click', () => { 
         UI.openProject('Inbox')
     })
-    } 
-    // HANDLE OPEN MODAL - PROJECT
-   static openProjectModal(){
-    const projectModal = document.querySelector('.project-modal');
-    const openProjModal = document.querySelector('.open-project-modal');
-        projectModal.style.display = "block";
-        openProjModal.style.display = "none";
-   }
-   // HANDLE CLOSE MODAL - PROJECT
-   static closeProjectModal(){
-    const projectModal = document.querySelector('.project-modal');
-    const openProjModal = document.querySelector('.open-project-modal');
-    document.getElementById('project').value = "";
-        projectModal.style.display ="none";
-        openProjModal.style.display ="block";
-   }
+    }
 
-   //CREATE HTML DOM TASK CONTENT 
+    static handleMainTaskBtns(){
+        const openTaskModal = document.querySelector('.open-modal')//open add task modal 
+        const closeTaskModal = document.querySelector('.close-modal')//close add task modal 
+        const addTaskBtn = document.querySelector('.add-task')//add a new task
+        const deleteTaskBtns = document.querySelectorAll('.delete-task')//delete an existing task
+
+        openTaskModal.onclick = UI.openTaskModal;
+        closeTaskModal.onclick = UI.closeTaskModal;
+ 
+        addTaskBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            UI.addTask()
+            UI.closeTaskModal()
+        })
+
+        deleteTaskBtns.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                let taskToDelete = e.currentTarget.parentElement.parentElement.firstElementChild.innerText;
+                console.log(taskToDelete)
+                let currentProject = document.querySelector('.title').innerText
+                console.log(currentProject)
+                UI.deleteTask(currentProject, taskToDelete)
+                UI.clearTasks()
+                UI.loadTasks(currentProject)
+            })
+        })
+     }
+    // CREATE HTML CONTENT - PROJECT + TASK
+    static createProject(title){
+        const projectsContainer = document.querySelector('.js-lists'); //Select Sidebar
+        projectsContainer.innerHTML += `<div class="proj">
+        <li class="proj-name proj-title">${title}</li>
+        <i class="fa-regular fa-circle-xmark delete-project"></i>
+        </div>`;
+        } 
+
    static createTask(name,description,priority,dueDate){
     const taskContainer = document.querySelector('.task-container');
     taskContainer.innerHTML += `
@@ -146,39 +175,20 @@ export default class UI{
     UI.handleMainTaskBtns()
    }
 
-   //HANDLE MAIN TASKS BUTTONS 
-   static handleMainTaskBtns(){
-    //open add task modal 
-    const openTaskModal = document.querySelector('.open-modal')
-    openTaskModal.onclick = UI.openTaskModal;
-    //close add task modal 
-    const closeTaskModal = document.querySelector('.close-modal')
-    closeTaskModal.onclick = UI.closeTaskModal;
-    //add a new task 
-    const addTaskBtn = document.querySelector('.add-task')
-    addTaskBtn.addEventListener('click', (e) => {
-        e.preventDefault()
-        UI.addTask()
-        UI.closeTaskModal()
-    })
+    //MODAL OPEN/CLOSE - PROJECT + TASK
+    static openProjectModal(){
+        const projectModal = document.querySelector('.project-modal');
+        const openProjModal = document.querySelector('.open-project-modal');
+        projectModal.style.display = "block";
+        openProjModal.style.display = "none";
+    }
 
-    //delete an existing task
-    const deleteTaskBtns = document.querySelectorAll('.delete-task')
-    deleteTaskBtns.forEach((button) => {
-        button.addEventListener('click', (e) => {
-            let taskToDelete = e.currentTarget.parentElement.parentElement.firstElementChild.innerText;
-            console.log(taskToDelete)
-            let currentProject = document.querySelector('.title').innerText
-            console.log(currentProject)
-            UI.deleteTask(currentProject, taskToDelete)
-            UI.clearTasks()
-            UI.loadTasks(currentProject)
-        })
-    })
-   }
-
-   static deleteTask(currentProject, taskToDelete){
-    Storage.deleteTask(currentProject,taskToDelete);
+   static closeProjectModal(){
+    document.getElementById('project').value = ""
+    const projectModal = document.querySelector('.project-modal');
+    const openProjModal = document.querySelector('.open-project-modal');
+        projectModal.style.display ="none";
+        openProjModal.style.display ="block";
    }
 
    static openTaskModal(){
@@ -187,7 +197,7 @@ export default class UI{
     taskModal.style.display = "block"
     openTaskModal.style.display = 'none';
    }
-   // HANDLE CLOSE MODAL - TASK
+
    static closeTaskModal(){
     const taskModal = document.querySelector('.modal');
     const openTaskModal = document.querySelector('.open-modal')
@@ -196,20 +206,5 @@ export default class UI{
         taskModal.style.display ="none";
         openTaskModal.style.display ="block";
    }
-
-   static addTask(){
-    const projectName = document.querySelector('.title').textContent;
-
-    const title = document.getElementById('title').value;
-    const description = document.getElementById('description').value;
-    const priority = document.getElementById('priority').value;
-    const date = document.getElementById('date').value; 
-    if (title === '') {
-        return
-    }
-    Storage.addTask(projectName, new Task(title,description,priority,date));
-    UI.createTask(title,description,priority,date)
-   }
 }
-    
-    
+
