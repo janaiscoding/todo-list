@@ -5,13 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do List</title>
-    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/fd2b67e26b.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header-wrapper">
         <a href="https://janaiscoding.github.io/todo-list/" class="logo">to Do-It!</a>
-        <a href="https://github.com/janaiscoding" class="contact-link" target="_blank">Contact</a>
+        <a href="https://www.linkedin.com/in/jana-istrate/" class="contact-link" target="_blank">Contact Me</a>
     </header>
     <!-- MAIN CONTENT: NAVIGATION + TO DO CONTAINTER -->
     <main class="main">
@@ -20,7 +19,7 @@
             <!-- JS PROJECTS -->
             <div class="lists-title">My Projects</div>
             <div class="proj">
-                <p class="inbox-project">Inbox</p>
+                <p class="inbox-project proj-title">Inbox</p>
                 </div>
             <ul class="js-lists">
                
@@ -46,8 +45,11 @@
         </div>
         <!-- VIEW TASKS -->
         <div class="content">
-            <p class="title">My Tasks</p>
+            <div class="title-wrapper">
+                <p class="title"></p>
+            </div>
             <!-- SHOW THE ARRAY OF TASKS HERE -->
+            <p class="task-title">To do's</p>
             <div class="task-container">
                 <div class="card">
                     <div class="card-wrapper-one">
@@ -117,6 +119,10 @@
             <div class="open-modal add-button">Add Task</div>
         </div>
     </main>
+    <!-- Footer section -->
+    <footer class="footer">
+        <a href="https://github.com/janaiscoding" class="footer-link" target="_blank">©JanaIsCoding</a>
+    </footer>
     <script src="main.js"></script>
 </body>
 </html>
