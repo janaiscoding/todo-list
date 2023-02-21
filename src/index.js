@@ -9,5 +9,8 @@ document.addEventListener('DOMContentLoaded', UI.loadHomepage)
 
 //Default Content
 Storage.addProject(new Project('Inbox'))
-Storage.addTask('Inbox',new Task('Clear my room', 'Clothes+Dust', 'High', '2023-03-20'))
+Storage.addProject(new Project('Workout'))
 Storage.addTask('Inbox',new Task('Weather App', 'Learn working with API', 'High', '2023-03-25'))
+Storage.addTask('Inbox',new Task('Clear my room', 'Clothes+Dust', 'Low', '2023-03-20'))
+Storage.addTask('Workout',new Task('30 min Cardio', 'Running + Jumping Jacks', 'High', '2023-03-20'))
+Storage.addTask('Workout',new Task('Stretching', '15 min stretching', 'Low', '2023-03-25'))

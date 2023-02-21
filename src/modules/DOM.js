@@ -13,7 +13,8 @@ export default class UI{
         Storage.getTodoList()//Fetch the List from Storage.
         .getProjects() //Get all the Projects from List.
         .forEach((project) => { //On Each Project,
-            if(project.title !== 'Inbox'){ //Except the Default,
+            if(project.title !== 'Inbox' &&
+            project.title !== 'Workout'){ //Except the Default,
                 UI.createProject(project.title) //Create HTML content.
             } 
         })
@@ -87,6 +88,7 @@ export default class UI{
    // BUTTONS PROJECT+TASK
    static handleMainProjBtns(){
     const defaultProject = document.querySelector('.inbox-project'); //Select Default Project(already in HTML).
+    const workoutProject = document.querySelector('.workout-project');
     const openProjModal = document.querySelector('.open-project-modal'); //Select Open Modal Button
     const closeProjModal = document.querySelector('.close-project-modal'); //Select Close Modal Button
     const addProjBtn = document.querySelector('.add-project'); //Select Add Project Button
@@ -118,6 +120,9 @@ export default class UI{
     //Default project function (Without this, it seems that my functions are repeating twice)
     defaultProject.addEventListener('click', () => { 
         UI.openProject('Inbox')
+    })
+    workoutProject.addEventListener('click', ()=> {
+        UI.openProject('Workout')
     })
     }
 
