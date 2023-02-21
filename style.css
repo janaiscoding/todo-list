@@ -84,7 +84,8 @@ body {
     padding-left: 20px;   
 }
 
-li:hover {
+li:hover,
+.proj-name:hover {
     cursor: pointer;
     background-color: #fff8ea80;
     border-radius: 5px;
@@ -144,7 +145,12 @@ li:hover {
     background-color: #2e2b2b2d;
     border-radius: 5px;
 }
-
+.card-wrapper-one {
+    display:flex;
+    gap: 10px;
+    justify-items: center;
+    align-self: center;
+}
 .card-wrapper-two{
     display:flex;
     gap: 10px;
