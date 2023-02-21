@@ -1,12 +1,9 @@
 :root {
-    --primary-beige: #EEEEEE; /* content background,header text,sidebar text*/
-    --primary-white: #EEEEEE; /* sidebar */
-    --primary-brown: #18122B; /* header background */
-    --header-background: #393053;
-    --primary-grey: #2E2B2B; /* modal background */
+    --primary-white: #EEEEEE; /* content background,header text,sidebar text*/
+    --primary-purple: #18122B; /* header background */
+    --purple-background: #393053;
     --primary-green: #51894D; /* add buttons */
     --primary-red: #EB455F; /* remove/cancel buttons */
-    --secondary-brown: #594545; /* content text */
 }
 *,
 *::after,
@@ -18,9 +15,9 @@
 }
 
 body {
-    background-color: var(--primary-beige);
+    background-color: var(--primary-white);
     font-family: 'Roboto', sans-serif;
-    color: var(--secondary-brown);
+    color: var(--primary-purple);
     line-height: 1.6;
     letter-spacing: 1px;
 }
@@ -29,24 +26,21 @@ body {
 .header-wrapper {
     display:flex;
     height: 10vh;
-    background-color: var(--header-background);
+    background-color: var(--purple-background);
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
 }
-.task-container{
-    background-color: #59454525;
-    border-radius: 20px;
-}
+
 .logo {
-    color:var(--primary-beige);
+    color:var(--primary-white);
     font-weight: 700;
     font-size: 2rem;
 }
 .contact-link,
 .footer-link{
-    color: var(--primary-beige);
+    color: var(--primary-white);
     font-weight: 700;
     font-size: 1.3rem;
     cursor: pointer;
@@ -58,7 +52,7 @@ body {
     font-size: 1rem;
 }
 .contact-link:hover{
-    border-bottom: 2px solid var(--primary-beige);
+    border-bottom: 2px solid var(--primary-white);
 }
 /* MAIN CONTENT */
 
@@ -71,8 +65,8 @@ body {
 /* SIDEBAR & PROJECTS */
 .sidebar{
     grid-column: 1/2;
-    background-color: var(--primary-beige);
-    color: var(--primary-grey);
+    background-color: var(--primary-white);
+    color: var(--primary-purple);
     font-size: 1.3rem;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
     padding: 30px 20px;
@@ -92,7 +86,7 @@ body {
 .lists-title {
     font-weight: 700;
     font-size: 1.5rem;
-    color: var(--primary-brown);
+    color: var(--primary-purple);
     padding-left: 20px;   
 }
 
@@ -109,7 +103,7 @@ body {
     padding-left: 20px;
     margin-top: 15px;
     font-weight: 200;
-    color: var(--primary-brown);
+    color: var(--primary-purple);
     border-radius: 5px;
 }
 
@@ -128,20 +122,20 @@ body {
 .title-wrapper{
     display:flex;
     justify-content: center;
-    color: var(--primary-brown);
+    color: var(--primary-purple);
 }
 
 .title{
     padding: 0px 20px;
     font-weight: 700;
     font-size: 3rem;
-    border-bottom: 3px solid var(--primary-brown);
+    border-bottom: 3px solid var(--primary-purple);
 }
 .task-title {
     display:flex;
     font-weight: 700;
     font-size: 2rem;
-    color: var(--primary-brown);
+    color: var(--primary-purple);
     padding-left: 5%;
 }
 
@@ -156,15 +150,15 @@ body {
     display: grid;
     grid-template-columns: repeat(3,1fr);
     padding: 10px 5% 10px 5%;
-    margin: 10px 20px;
+    margin: 10px 0px;
 }
 
 .task-name{
     font-weight: 600;
-    color:var(--primary-brown);
+    color:var(--primary-purple);
 }
 .description{
-    color:var(--primary-brown);    
+    color:var(--primary-purple);    
     font-style: italic;
 }
 .card-wrapper-two{
@@ -210,7 +204,7 @@ i:hover{
     position: relative;
     z-index: 1;
     background-color: #2e2b2b2d;
-    color: var(--primary-brown);
+    color: var(--primary-purple);
     border-radius: 20px;
     padding: 10px 20px 10px 5%;
 }
@@ -220,7 +214,7 @@ i:hover{
 }
 .open-modal{
     font-weight: 200;
-    color: var(--primary-grey);
+    color: var(--primary-purple);
     font-size: 1.3rem;
     padding: 10px 20px 10px 5%;
     display:block;
@@ -271,7 +265,7 @@ i:hover{
 .close-modal:hover,
 .close-project-modal:hover {
     background-color: var(--primary-red);
-    color:var(--primary-beige);
+    color:var(--primary-white);
   }
 
 /*footer */
@@ -279,8 +273,8 @@ i:hover{
     display: flex;
     width: 100%;
     height: 5vh;
-    background-color: var(--primary-brown);
-    color: var(--primary-beige);
+    background-color: var(--purple-background);
+    color: var(--primary-white);
     justify-content: center;
     align-items: center;
 }
