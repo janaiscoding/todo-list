@@ -1,6 +1,7 @@
 <h1> Jana's To Do List </h1>
 
 # Live Demo 
+![](https://github.com/janaiscoding/todo-list/blob/main/assets/TodoApp-Preview.gif)
 - See the full live preview [here](https://janaiscoding.github.io/todo-list/)
 
 <h1> Built with </h1>
