@@ -7,22 +7,32 @@ export default class UI{
     static loadHomepage(){
         UI.loadProjects()
         UI.handleMainProjBtns()
+        UI.openProject('Inbox')
     }
     // LOAD EVERY PROJECT IN THE SIDEBAR
     static loadProjects(){
         Storage.getTodoList()
         .getProjects()
-        .forEach((project)=> UI.createProject(project.title))
+        .forEach((project) => {
+            if(project.title !== 'Inbox'){
+                UI.createProject(project.title)
+            } 
+        })
         UI.handleMainProjBtns();
     }
    //LOAD TASKS FROM CURRENT PROJECT
-//    static loadTasks(projectName){
-//     UI.handleMainTaskBtns()
-//     Storage.getTodoList()
-//     .getProject(projectName)
-//     .getTasks()
-//     .forEach((task) => UI.createTask(task.name))
-//    }
+   static loadTasks(projectName){
+     UI.handleMainTaskBtns()
+     UI.clearTasks()
+     let currentProject = Storage.getTodoList().getProject(projectName)
+     let currentTasks = currentProject.getTasks()
+     currentTasks.forEach((task) => UI.createTask(task.title, task.description,task.priority,task.dueDate))
+    }
+
+    static clearTasks(){
+        const taskContainer = document.querySelector('.task-container')
+        taskContainer.innerHTML = ''
+    }
 
     // HTML DOM SIDEBAR PROJECTS
     static createProject(title){
@@ -88,7 +98,6 @@ export default class UI{
         UI.deleteProject(projectName);
         UI.clearProjects();
         UI.loadProjects();
-        UI.openProject('Inbox');
     }))
 
     allProjects.forEach((project) => 
@@ -117,33 +126,47 @@ export default class UI{
    //CREATE HTML DOM TASK CONTENT 
    static createTask(name,description,priority,dueDate){
     const taskContainer = document.querySelector('.task-container');
-    taskContainer.innerHTML += `const openTaskModal = document.querySelector('.open-modal')
-                        <p class="task-name">${name}</p>
-                    </div>
-                    <p class="description">${description}</p>
-                    <div class="card-wrapper-two">
-                        <p class="priority-high">${priority}</p>
-                        <p class="due-date">${dueDate}</p>
-                        <i class="fa-regular fa-circle-xmark"></i>
-                    </div>
-                </div>
+    taskContainer.innerHTML += `
+    <div class="card">
+    <div class="card-wrapper-one">
+        <p class="task-name">${name}</p>
+    </div>
+    <p class="description">${description}</p>
+    <div class="card-wrapper-two">
+        <p class="priority-high">${priority}</p>
+        <p class="due-date">${dueDate}</p>
+        <i class="fa-regular fa-circle-xmark delete-task"></i>
+    </div>
+    </div>
     `
+    UI.handleMainTaskBtns()
    }
+
    //HANDLE MAIN TASKS BUTTONS 
    static handleMainTaskBtns(){
     //open add task modal 
     const openTaskModal = document.querySelector('.open-modal')
     openTaskModal.onclick = UI.openTaskModal;
     //close add task modal 
+    const closeTaskModal = document.querySelector('.close-modal')
+    closeTaskModal.onclick = UI.closeTaskModal;
     //add a new task 
     const addTaskBtn = document.querySelector('.add-task')
     addTaskBtn.addEventListener('click', (e) => {
         e.preventDefault()
         UI.addTask()
-        UI.loadTasks()
+        UI.closeTaskModal()
     })
 
     //delete an existing task
+    const deleteTaskBtns = document.querySelectorAll('.delete-task')
+    deleteTaskBtns.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            let taskToDelete = e.currentTarget.parentElement.parentElement.firstElementChild.innerText;
+            let currentProject = document.querySelector('.title')
+            UI.deleteTask(currentProject, taskToDelete)
+        }) //AM RAMAS AICI!!!!!!!!!
+    })
    }
    static openTaskModal(){
     const taskModal = document.querySelector('.modal');
@@ -151,16 +174,28 @@ export default class UI{
     taskModal.style.display = "block"
     openTaskModal.style.display = 'none';
    }
+   // HANDLE CLOSE MODAL - TASK
+   static closeTaskModal(){
+    const taskModal = document.querySelector('.modal');
+    const openTaskModal = document.querySelector('.open-modal')
+    document.getElementById('title').value = "";
+    document.getElementById('description').value = ""
+        taskModal.style.display ="none";
+        openTaskModal.style.display ="block";
+   }
 
    static addTask(){
-    const projectName = document.querySelector('.title');
+    const projectName = document.querySelector('.title').textContent;
 
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
     const priority = document.getElementById('priority').value;
     const date = document.getElementById('date').value; 
-
+    if (title === '') {
+        return
+    }
     Storage.addTask(projectName, new Task(title,description,priority,date));
+    UI.createTask(title,description,priority,date)
    }
 }
     
