@@ -38,6 +38,8 @@
 <h3> Future plans for this project </h3>
 
 - Use date-fns package for organizing tasks by date
+- Edit/rename functions
+- Checkmark for task completion
 - Mobile responsiveness
 - Light and Dark mode
 - Delete/clear all function
