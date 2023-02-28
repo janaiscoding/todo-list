@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/janaiscoding/todo-list#readme",
   "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
     "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
