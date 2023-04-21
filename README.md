@@ -3,6 +3,7 @@
 # Live Demo 
 ![](https://github.com/janaiscoding/todo-list/blob/main/assets/TodoApp-Preview.gif)
 - See the full live preview [here](https://janaiscoding.github.io/todo-list/)
+- Also [here](https://todoapp-ab18a.web.app/) after I've learned how to use Firebase in my projects!! 
 
 <h1> Built with </h1>
 
